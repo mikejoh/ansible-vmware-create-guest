@@ -1,0 +1,37 @@
+# VMware guest task
+---
+
+- name: Create a new VM
+  vsphere_guest:
+      validate_certs: no
+      vcenter_hostname: "{{ vcenter_hostname }}"
+      username: "{{ esxi_user }}"
+      password: "{{ esxi_pass }}"
+      guest: "{{ vm_name }}"
+      state: powered_on
+      vm_extra_config:
+          vcpu.hotadd: yes
+          mem.hotadd: yes
+          notes: Created by Ansible
+      vm_disk:
+          disk1:
+              size_gb: "{{ disk }}"
+              type: thin
+              datastore: "{{ datastore }}"
+      vm_nic:
+          nic1:
+              type: vmxnet3
+              network: "{{ network }}"
+              network_type: standard
+      vm_hardware:
+          memory_mb: "{{ memory }}"
+          num_cpus: 1
+          scsi: paravirtual
+          osid: ubuntu64Guest
+          vm_cdrom:
+              type: "iso"
+              iso_path: "{{ datastore }}/ISO/Linux/debian-9.2.1-amd64-netinst.iso"
+      esxi:
+          datacenter: ha-datacenter
+          hostname: esxi01.home.local
+  delegate_to: localhost

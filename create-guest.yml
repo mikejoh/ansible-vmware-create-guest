@@ -1,0 +1,30 @@
+---
+
+- name: Create a new VMware VM
+  hosts: esxi
+  gather_facts: false
+  connection: local
+
+  vars_files:
+      - vault.yml
+
+  vars:
+      esxi_user: "{{ username }}"
+      esxi_pass: "{{ password }}"
+      vcenter_hostname: "{{ ansible_host }}"
+      datastore: VM_DATA
+  vars_prompt:
+     - name: "vm_name"
+       prompt: "Enter a VM name"
+       private: no
+     - name: "memory"
+       prompt: "Enter amount of memory"
+       private: no
+     - name: "disk"
+       prompt: "Enter amount of GB (disk)"
+       private: no
+     - name: "network"
+       prompt: "Enter the network you want to use for this VM e.g. DMZ"
+
+  roles:
+      - vmware
