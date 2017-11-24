@@ -20,20 +20,20 @@ touch ~/.vault_pass.txt
 chmod 600 ~/.vault_pass.txt
 echo "supersecret" >> ~/.vault_pass.txt
 ```
-4. Create a vault.yml file in the directory containing the other Ansible files, in this file add the username and password as variables, these credentials will be used to connect to your ESXi host and create VMs.
+4. Create a **vault.yml** file in the directory containing the other Ansible files, in this file add the username and password as variables, these credentials will be used to connect to your ESXi host and create VMs.
 
-Contents of vault.yml:
+Contents of **vault.yml**:
 ```
 username: root
 password: bringtherain
 ```
 
-Encrypt the vault.yml file, since we have a variable in ansible.cfg that points at your local vault password file you only have to run the following:
+Encrypt the **vault.yml** file, since we have a variable in **ansible.cfg** that points at your local vault password file you only have to run the following:
 ```
 ansible-vault encrypt vault.yml
 ```
 
-5. Change the host(s) in the inventory file so that it reflects your environment.
+5. Change the host(s) in the inventory-file so that it reflects your environment.
 6. Run the playbook, there's no need to provide the inventory-file, we have configured a default inventory in the ansible.cfg file.
 ```
 ansible-playbook create-guest.yml
