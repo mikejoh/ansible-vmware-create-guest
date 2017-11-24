@@ -3,7 +3,7 @@ I created this project as an excuse to learn more about Ansible, nothing advance
 
 ## Notes
 * I've hardcoded the ISO image in the task that i want to boot up with (Debian 9 in this case).
-* I've not fully automated this all the way meaning that i don't have a preseed file or URL, for fun i might add a task that spins up a docker container feeding the preseed file and then shutting it down when we're done.
+* I've not fully automated this all the way meaning that i don't have a preseed file or URL, for fun i might add a task that spins up a Docker container feeding the preseed file and then shutting it down when we're done. I have a Docker preseed container repo [here](https://github.com/mikejoh/docker-preseeder)
 
 ## Setup
 
